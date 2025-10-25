@@ -4,19 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Keysmiths Pricelist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fefefe;
-      --primary: #111827;
-      --accent: #3b82f6;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --highlight: #dbeafe;
+      --bg1: #fffaf4;
+      --bg2: #fffdfb;
+      --primary: #4b3832;
+      --accent: #b08968;
+      --border: #e6dfd5;
+      --muted: #7a6f67;
+      --highlight: #f2e9e4;
     }
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
       color: var(--primary);
       padding: 48px 24px;
       max-width: 900px;
@@ -25,9 +26,11 @@
     }
     h1 {
       text-align: center;
-      font-size: 2.25rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.4rem;
       font-weight: 700;
-      margin-bottom: 0.75rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
     p.subtitle {
       text-align: center;
@@ -36,59 +39,52 @@
       margin-bottom: 2rem;
     }
     h2 {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-top: 2.5rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--accent);
       border-left: 4px solid var(--accent);
-      padding-left: 8px;
-      transition: 0.3s;
+      padding-left: 10px;
     }
     .table-container {
       overflow-x: auto;
       margin-top: 16px;
-      transition: 0.3s;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       min-width: 720px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background: #fff;
     }
     th, td {
       padding: 12px 14px;
       text-align: center;
       border: 1px solid var(--border);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
     th {
-      background-color: var(--primary);
-      color: white;
+      background-color: var(--accent);
+      color: #fff;
       font-weight: 600;
+      letter-spacing: 0.3px;
     }
     tr:nth-child(even) {
-      background-color: #f9fafb;
+      background-color: #fdf8f4;
+    }
+    tr:hover {
+      background-color: var(--highlight);
+      transition: 0.2s;
     }
     tr.highlight {
-      background-color: var(--highlight);
-      transition: background-color 0.3s;
+      background-color: #f7ede2;
+      transition: 0.3s;
     }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 15px;
-      color: var(--muted);
-    }
-    .footer a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    /* Search bar styling */
     .search-container {
       display: flex;
       justify-content: center;
@@ -98,31 +94,44 @@
     }
     #searchInput {
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       padding: 12px 16px;
       border: 1px solid var(--border);
       border-radius: 10px;
       font-size: 1rem;
+      background-color: #fffaf4;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
       outline: none;
       transition: 0.3s;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     #searchInput:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+      box-shadow: 0 0 0 3px rgba(176,137,104,0.2);
     }
     #clearBtn {
       background-color: var(--accent);
       color: white;
       border: none;
-      border-radius: 8px;
-      padding: 10px 16px;
+      border-radius: 10px;
+      padding: 10px 18px;
       font-size: 0.9rem;
       cursor: pointer;
       transition: 0.3s;
+      font-family: 'Inter', sans-serif;
     }
     #clearBtn:hover {
-      background-color: #2563eb;
+      background-color: #a07654;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
     }
   </style>
 </head>
@@ -136,7 +145,7 @@
     <button id="clearBtn">Clear</button>
   </div>
 
-  <!-- CONTOH KATEGORI -->
+  <!-- CONTOH TABEL -->
   <h2>Streaming Apps</h2>
   <div class="table-container">
     <table class="searchable">
@@ -218,11 +227,10 @@
         }
       });
 
-      if (!anyMatch && filter) {
-        document.querySelector(".footer").innerHTML = "<p style='text-align:center;color:#6b7280;'>Tidak ditemukan hasil untuk \"" + searchInput.value + "\"</p>";
-      } else {
-        document.querySelector(".footer").innerHTML = 'Order sekarang via Telegram: <a href="https://t.me/keysmiths" target="_blank">@wonhgee</a>';
-      }
+      const footer = document.querySelector(".footer");
+      footer.innerHTML = !anyMatch && filter
+        ? `<p style="text-align:center;color:${getComputedStyle(document.body).getPropertyValue('--muted')}">Tidak ditemukan hasil untuk "${searchInput.value}"</p>`
+        : 'Order sekarang via Telegram: <a href="https://t.me/keysmiths" target="_blank">@wonhgee</a>';
     }
 
     searchInput.addEventListener("keyup", searchApps);
