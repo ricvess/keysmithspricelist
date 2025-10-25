@@ -81,6 +81,25 @@
       text-decoration: none;
       font-weight: 500;
     }
+    /* Search bar styling */
+    .search-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    #searchInput {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.2s;
+    }
+    #searchInput:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+    }
   </style>
 </head>
 <body>
@@ -88,10 +107,14 @@
   <h1>📦 Keysmiths Pricelist</h1>
   <p class="subtitle">Your key to premium apps. Trusted & simple.</p>
 
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari aplikasi... (contoh: Netflix, Canva, Spotify)">
+  </div>
+
   <!-- STREAMING APPS -->
   <h2>Streaming Apps</h2>
   <div class="table-container">
-  <table>
+  <table class="searchable">
     <thead>
       <tr>
         <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
@@ -110,7 +133,7 @@
   <!-- LISTENING APPS -->
   <h2>Listening Apps</h2>
   <div class="table-container">
-  <table>
+  <table class="searchable">
     <thead>
       <tr>
         <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
@@ -127,7 +150,7 @@
   <!-- EDITING APPS -->
   <h2>Editing Apps</h2>
   <div class="table-container">
-  <table>
+  <table class="searchable">
     <thead>
       <tr>
         <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
@@ -146,7 +169,7 @@
   <!-- STUDY APPS -->
   <h2>Study Apps</h2>
   <div class="table-container">
-  <table>
+  <table class="searchable">
     <thead>
       <tr>
         <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
@@ -161,7 +184,7 @@
   <!-- OTHER APPS -->
   <h2>Other Apps</h2>
   <div class="table-container">
-  <table>
+  <table class="searchable">
     <thead>
       <tr>
         <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
@@ -175,9 +198,23 @@
   </div>
 
   <div class="footer">
-    Order sekarang via Telegram: <a href="https://t.me/keysmiths" target="_blank">@wonhgee</a>
+    Tap here for order : <a href="https://t.me/keysmiths" target="_blank">@keysmiths</a>
   </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function() {
+      const filter = searchInput.value.toLowerCase();
+      const tables = document.querySelectorAll(".searchable tbody");
+      tables.forEach(tbody => {
+        const rows = tbody.getElementsByTagName("tr");
+        for (let i = 0; i < rows.length; i++) {
+          const text = rows[i].innerText.toLowerCase();
+          rows[i].style.display = text.includes(filter) ? "" : "none";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
-
