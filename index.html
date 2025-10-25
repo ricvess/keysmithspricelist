@@ -12,6 +12,7 @@
       --accent: #3b82f6;
       --muted: #6b7280;
       --border: #e5e7eb;
+      --highlight: #dbeafe;
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -43,10 +44,12 @@
       color: var(--accent);
       border-left: 4px solid var(--accent);
       padding-left: 8px;
+      transition: 0.3s;
     }
     .table-container {
       overflow-x: auto;
       margin-top: 16px;
+      transition: 0.3s;
     }
     table {
       width: 100%;
@@ -70,6 +73,10 @@
     tr:nth-child(even) {
       background-color: #f9fafb;
     }
+    tr.highlight {
+      background-color: var(--highlight);
+      transition: background-color 0.3s;
+    }
     .footer {
       text-align: center;
       margin-top: 40px;
@@ -83,22 +90,39 @@
     }
     /* Search bar styling */
     .search-container {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
       margin-bottom: 2rem;
     }
     #searchInput {
       width: 100%;
       max-width: 400px;
-      padding: 10px 14px;
+      padding: 12px 16px;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
       outline: none;
-      transition: 0.2s;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     #searchInput:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+    #clearBtn {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #clearBtn:hover {
+      background-color: #2563eb;
     }
   </style>
 </head>
@@ -108,111 +132,103 @@
   <p class="subtitle">Your key to premium apps. Trusted & simple.</p>
 
   <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Cari aplikasi... (contoh: Netflix, Canva, Spotify)">
+    <input type="text" id="searchInput" placeholder="Cari aplikasi... contoh: Netflix, Canva, Spotify">
+    <button id="clearBtn">Clear</button>
   </div>
 
-  <!-- STREAMING APPS -->
+  <!-- CONTOH KATEGORI -->
   <h2>Streaming Apps</h2>
   <div class="table-container">
-  <table class="searchable">
-    <thead>
-      <tr>
-        <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>HBO Max</td><td>Sharing</td><td>–</td><td>–</td><td>Rp10.000</td><td>Rp15.000</td><td>–</td><td>–</td></tr>
-      <tr><td>Netflix</td><td>1U</td><td>–</td><td>–</td><td>–</td><td>Rp25.000</td><td>–</td><td>–</td></tr>
-      <tr><td>Netflix</td><td>2U</td><td>–</td><td>–</td><td>–</td><td>Rp15.000</td><td>–</td><td>–</td></tr>
-      <tr><td>Prime Video</td><td>Sharing</td><td>–</td><td>–</td><td>–</td><td>Rp8.000</td><td>–</td><td>–</td></tr>
-      <tr><td>VIU</td><td>Private</td><td>–</td><td>–</td><td>–</td><td>-</td><td>-</td><td>Rp10.000</td></tr>
-    </tbody>
-  </table>
+    <table class="searchable">
+      <thead>
+        <tr><th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Netflix</td><td>Premium</td><td>-</td><td>-</td><td>-</td><td>Rp49.000</td><td>-</td><td>-</td></tr>
+        <tr><td>HBO Max</td><td>Sharing</td><td>-</td><td>-</td><td>-</td><td>Rp15.000</td><td>-</td><td>-</td></tr>
+        <tr><td>Prime Video</td><td>Private</td><td>-</td><td>-</td><td>-</td><td>Rp8.000</td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- LISTENING APPS -->
-  <h2>Listening Apps</h2>
-  <div class="table-container">
-  <table class="searchable">
-    <thead>
-      <tr>
-        <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Apple Music</td><td>Sharing</td><td>–</td><td>–</td><td>–</td><td>Rp5.000</td><td>–</td><td>–</td></tr>
-      <tr><td>Spotify</td><td>Famplan</td><td>–</td><td>–</td><td>–</td><td>Rp15.000</td><td>–</td><td>–</td></tr>
-      <tr><td>Spotify</td><td>Indplan</td><td>–</td><td>–</td><td>–</td><td>Rp</td><td>–</td><td>–</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <!-- EDITING APPS -->
   <h2>Editing Apps</h2>
   <div class="table-container">
-  <table class="searchable">
-    <thead>
-      <tr>
-        <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Alight Motion</td><td>Private</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Rp5.000</td><td>-</td></tr>
-      <tr><td>Alight Motion</td><td>Sharing</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Rp3.000</td><td>-</td></tr>
-      <tr><td>Canva</td><td>Invite</td><td>–</td><td>–</td><td>–</td><td>-</td><td>-</td><td>Rp10.000</td></tr>
-      <tr><td>CapCut</td><td>Private</td><td>Rp</td><td>Rp</td><td>Rp</td><td>Rp15.000</td><td>–</td><td>–</td></tr>
-      <tr><td>CapCut</td><td>Sharing</td><td>Rp</td><td>Rp</td><td>Rp7.000</td><td>–</td><td>–</td><td>–</td></tr>
-    </tbody>
-  </table>
+    <table class="searchable">
+      <thead>
+        <tr><th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Canva Pro</td><td>Private</td><td>Rp14.000</td><td>Rp18.000</td><td>Rp25.000</td><td>Rp95.000</td><td>Rp769.000</td><td>Rp1.200.000</td></tr>
+        <tr><td>CapCut</td><td>Private</td><td>-</td><td>-</td><td>Rp7.000</td><td>Rp12.000</td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- STUDY APPS -->
-  <h2>Study Apps</h2>
+  <h2>Listening Apps</h2>
   <div class="table-container">
-  <table class="searchable">
-    <thead>
-      <tr>
-        <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <!-- OTHER APPS -->
-  <h2>Other Apps</h2>
-  <div class="table-container">
-  <table class="searchable">
-    <thead>
-      <tr>
-        <th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>DazzCam</td><td>iOS</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>Rp12.000</td></tr>
-      <tr><td>OldRoll</td><td>Android</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>Rp13.000</td></tr>
-    </tbody>
-  </table>
+    <table class="searchable">
+      <thead>
+        <tr><th>Aplikasi</th><th>Tipe</th><th>1D</th><th>3D</th><th>7D</th><th>1M</th><th>1Y</th><th>Lifetime</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Spotify</td><td>Famplan</td><td>-</td><td>-</td><td>-</td><td>Rp17.000</td><td>-</td><td>-</td></tr>
+        <tr><td>Apple Music</td><td>Famplan</td><td>-</td><td>-</td><td>-</td><td>Rp17.000</td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="footer">
-    Tap here for order : <a href="https://t.me/keysmiths" target="_blank">@keysmiths</a>
+    Order sekarang via Telegram: <a href="https://t.me/keysmiths" target="_blank">@wonhgee</a>
   </div>
 
   <script>
     const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("keyup", function() {
+    const clearBtn = document.getElementById("clearBtn");
+    const allSections = document.querySelectorAll("h2, .table-container");
+
+    function searchApps() {
       const filter = searchInput.value.toLowerCase();
+      let anyMatch = false;
+
+      allSections.forEach(section => section.style.display = "");
+
       const tables = document.querySelectorAll(".searchable tbody");
       tables.forEach(tbody => {
-        const rows = tbody.getElementsByTagName("tr");
-        for (let i = 0; i < rows.length; i++) {
-          const text = rows[i].innerText.toLowerCase();
-          rows[i].style.display = text.includes(filter) ? "" : "none";
+        const rows = tbody.querySelectorAll("tr");
+        let hasMatch = false;
+
+        rows.forEach(row => {
+          const text = row.innerText.toLowerCase();
+          if (filter && text.includes(filter)) {
+            row.style.display = "";
+            row.classList.add("highlight");
+            hasMatch = true;
+            anyMatch = true;
+          } else {
+            row.style.display = filter ? "none" : "";
+            row.classList.remove("highlight");
+          }
+        });
+
+        const parentTable = tbody.closest(".table-container");
+        const header = parentTable.previousElementSibling;
+        if (!hasMatch && filter) {
+          parentTable.style.display = "none";
+          header.style.display = "none";
         }
       });
+
+      if (!anyMatch && filter) {
+        document.querySelector(".footer").innerHTML = "<p style='text-align:center;color:#6b7280;'>Tidak ditemukan hasil untuk \"" + searchInput.value + "\"</p>";
+      } else {
+        document.querySelector(".footer").innerHTML = 'Order sekarang via Telegram: <a href="https://t.me/keysmiths" target="_blank">@wonhgee</a>';
+      }
+    }
+
+    searchInput.addEventListener("keyup", searchApps);
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      searchApps();
     });
   </script>
 
